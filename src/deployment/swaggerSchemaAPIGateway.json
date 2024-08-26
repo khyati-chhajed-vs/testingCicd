@@ -1,0 +1,5475 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Vianaar",
+    "description": "",
+    "version": "1.0.0",
+    "contact": {
+      "name": "",
+      "url": "",
+      "email": ""
+    }
+  },
+  "components": {
+    "securitySchemes": {},
+    "schemas": {}
+  },
+  "paths": {
+    "/api/v1/projects/{project_id}/units/{unit_id}/book_a_Stay": {
+      "post": {
+        "tags": ["BookAStay"],
+        "description": "API to create book a stay request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "check_in_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "check_out_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "no_of_guests": {
+                    "type": "number",
+                    "minimum": 1
+                  }
+                },
+                "required": ["check_in_date", "check_out_date", "location", "no_of_guests"]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/book_a_Stay",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "get": {
+        "tags": ["BookAStay"],
+        "description": "API to fetch current active book a stay request",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "check_in_date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "check_out_date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "no_of_guests": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "request_status": {
+                      "type": "string"
+                    },
+                    "add_time": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["check_in_date", "check_out_date", "location", "no_of_guests", "add_time"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/book_a_Stay",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "http",
+          "integrationHttpMethod": "GET",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/complaint": {
+      "get": {
+        "tags": ["Complaint"],
+        "description": "API to fetch raised complaints",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "user_id": {
+                        "type": "number"
+                      },
+                      "project_id": {
+                        "type": "number"
+                      },
+                      "unit_id": {
+                        "type": "number"
+                      },
+                      "request_date": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "request_time": {
+                        "type": "string",
+                        "format": "time"
+                      },
+                      "complaint_title": {
+                        "type": "string"
+                      },
+                      "complaint_type_id": {
+                        "type": "number"
+                      },
+                      "complaint_type": {
+                        "type": "string"
+                      },
+                      "issue_id": {
+                        "type": "number"
+                      },
+                      "issue_name": {
+                        "type": "string"
+                      },
+                      "comments": {
+                        "type": "string"
+                      },
+                      "request_status": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/complaint",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Complaint"],
+        "description": "API to raise a ticket",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "complaint_title": {
+                    "type": "string"
+                  },
+                  "complaint_type_id": {
+                    "type": "number"
+                  },
+                  "issue_id": {
+                    "type": "number"
+                  },
+                  "comments": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/complaint",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/complaint_types": {
+      "get": {
+        "tags": ["Complaint"],
+        "description": "API to fetch complaint types and their associated active issues",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "complaint_type_id": {
+                        "type": "string"
+                      },
+                      "complaint_name": {
+                        "type": "string"
+                      },
+                      "issues": {
+                        "type": ["null", "array"],
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number"
+                            },
+                            "name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/complaint_types",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http"
+        }
+      }
+    },
+    "/api/v1/configs": {
+      "get": {
+        "tags": ["Config"],
+        "description": "API to fetch app configurations data including welcome videos and document categories",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "android_min_version": {
+                      "type": "string"
+                    },
+                    "android_max_version": {
+                      "type": "string"
+                    },
+                    "ios_min_version": {
+                      "type": "string"
+                    },
+                    "ios_max_version": {
+                      "type": "string"
+                    },
+                    "furnish_my_property_url": {
+                      "type": "string"
+                    },
+                    "sustainaibility_url": {
+                      "type": "string"
+                    },
+                    "bluekite_url": {
+                      "type": "string"
+                    },
+                    "airport_prior_booking_time": {
+                      "type": "string"
+                    },
+                    "laundary_service_time": {
+                      "type": "string"
+                    },
+                    "site_visit_prior_booking_time": {
+                      "type": "string"
+                    },
+                    "airport_disclaimer": {
+                      "type": "string"
+                    },
+                    "laundary_disclaimer": {
+                      "type": "string"
+                    },
+                    "site_visit_disclaimer": {
+                      "type": "string"
+                    },
+                    "pre_hamburger_menu": {
+                      "type": "string"
+                    },
+                    "post_hamburger_menu": {
+                      "type": "string"
+                    },
+                    "block_date_disclaimer": {
+                      "type": "string"
+                    },
+                    "block_date_prior_booking_time": {
+                      "type": "string"
+                    },
+                    "welcome_videos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "project_type": {
+                            "type": "string"
+                          },
+                          "video_name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "document_categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "category_name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/configs",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http"
+        }
+      }
+    },
+    "/api/v1/configs/catamaran_config": {
+      "get": {
+        "tags": ["Config"],
+        "description": "API to fetch configuration for catamaran",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "no_of_pax": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "P1": {
+                            "type": "string"
+                          },
+                          "P2": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "questions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "answer": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "A1": {
+                                  "type": "string"
+                                },
+                                "A2": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "question": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "catamaran_disclaimer": {
+                      "type": "string"
+                    },
+                    "is_request_generation_flow": {
+                      "type": "number"
+                    },
+                    "terms_and_conditions": {
+                      "type": "string"
+                    },
+                    "catamaran_prior_booking_time": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "deletedAt": {
+                      "type": ["null", "string"],
+                      "format": "date-time"
+                    },
+                    "slots": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "slot": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/configs/catamaran_configs",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http"
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/documents": {
+      "post": {
+        "tags": ["Document"],
+        "description": "API to upload user's documents",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "maxLength": 20
+                  },
+                  "category_id": {
+                    "type": "number"
+                  },
+                  "file": {
+                    "type": "string"
+                  }
+                },
+                "required": ["title", "category_id", "file"]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/documents",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/documents/category/{category_id}": {
+      "get": {
+        "tags": ["Document"],
+        "description": "API to fetch user`s documents",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "category_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "file": {
+                            "type": "string"
+                          },
+                          "add_by": {
+                            "type": "string"
+                          },
+                          "add_time": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/documents/category/{category_id}",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.path.category_id": "method.request.path.category_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/feedback": {
+      "post": {
+        "tags": ["Feedback"],
+        "description": "API to submit feedback",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "comment": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/feedback",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Feedback"],
+        "description": "API to get feedback",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "comment": {
+                        "type": "string"
+                      },
+                      "add_time": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/feedback",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/furnish_my_property": {
+      "post": {
+        "tags": ["Furnish My Property"],
+        "description": "API to create request for furnish my property",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/furnish_my_property",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/plans": {
+      "get": {
+        "tags": ["Plans"],
+        "description": "API to fetch plan details for given project_id and unit id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "image_url": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/plans",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects": {
+      "get": {
+        "tags": ["Project"],
+        "description": "API for fetching all project details for a user",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "project_id": {
+                        "type": "number"
+                      },
+                      "project_name": {
+                        "type": "string"
+                      },
+                      "unit_id": {
+                        "type": "number"
+                      },
+                      "unit_name": {
+                        "type": "string"
+                      },
+                      "project_status": {
+                        "type": "string"
+                      },
+                      "is_rental_enabled": {
+                        "type": "boolean"
+                      },
+                      "project_address": {
+                        "type": "string"
+                      },
+                      "project_image": {
+                        "type": "string"
+                      },
+                      "project_type": {
+                        "type": "string"
+                      },
+                      "add_time": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http"
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/team": {
+      "get": {
+        "tags": ["Project"],
+        "description": "API to fetch team details for given project id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "designation": {
+                        "type": "string"
+                      },
+                      "image": {
+                        "type": "string"
+                      },
+                      "phone_number": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/team",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/contacts": {
+      "get": {
+        "tags": ["Project"],
+        "description": "API to fetch emergency contact for given project id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "emergency_id": {
+                        "type": "integer"
+                      },
+                      "emergency_name": {
+                        "type": "string"
+                      },
+                      "emergency_phone": {
+                        "type": "string"
+                      },
+                      "add_time": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/contacts",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/progress": {
+      "get": {
+        "tags": ["Project"],
+        "description": "API for fetching all project details for a user",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "images": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": ["date", "images"]
+                      }
+                    }
+                  },
+                  "required": ["data"],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/progress",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/recommendations/category/{category_id}": {
+      "get": {
+        "tags": ["Explore Goa"],
+        "description": "API to fetch Recommendations near project for exploring goa",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "category_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "area_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category_id": {
+                        "type": "string"
+                      },
+                      "category_name": {
+                        "type": "string"
+                      },
+                      "recommendations": {
+                        "type": ["null", "array"],
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "recommendation_id": {
+                              "type": "integer"
+                            },
+                            "recommendation_name": {
+                              "type": "string"
+                            },
+                            "recommendation_phone": {
+                              "type": "string"
+                            },
+                            "show_monsoon": {
+                              "type": "string"
+                            },
+                            "image_name": {
+                              "type": "string"
+                            },
+                            "url_key": {
+                              "type": "string"
+                            },
+                            "position": {
+                              "type": "integer"
+                            },
+                            "address": {
+                              "type": "string"
+                            },
+                            "area_id": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/recommendations/category/{category_id}",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.category_id": "method.request.path.category_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/service_request": {
+      "get": {
+        "tags": ["Service Request"],
+        "description": "API to fetch all service request details",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "request_date": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "request_status": {
+                        "type": "string"
+                      },
+                      "add_by": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/service_request",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/site_visit_request": {
+      "post": {
+        "tags": ["Site Visit Request"],
+        "description": "API to create site visit request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "request_time": {
+                    "type": "string",
+                    "format": "time"
+                  },
+                  "comments": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/site_visit_request",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Site Visit Request"],
+        "description": "API to get site visit requests",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "request_date": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "request_time": {
+                        "type": "string",
+                        "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d$"
+                      },
+                      "comments": {
+                        "type": "string"
+                      },
+                      "request_status": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["id", "request_date", "request_time", "request_status"]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/site_visit_request",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/site_visit_request/{request_id}": {
+      "delete": {
+        "tags": ["Site Visit Request"],
+        "description": "API to create site visit request",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "request_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "204"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/site_visit_request/{request_id}",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "delete",
+          "type": "http",
+          "integrationHttpMethod": "delete",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.path.request_id": "method.request.path.request_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/survey": {
+      "post": {
+        "tags": ["Survey"],
+        "description": "API to submit survey data",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "survey_data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "question_id": {
+                          "type": "number"
+                        },
+                        "answer": {
+                          "type": ["string", "number"]
+                        },
+                        "category": {
+                          "type": "string"
+                        }
+                      },
+                      "required": ["question_id", "answer", "category"],
+                      "additionalProperties": false,
+                      "if": {
+                        "properties": {
+                          "category": {
+                            "enum": ["yes/no"]
+                          }
+                        }
+                      },
+                      "then": {
+                        "properties": {
+                          "answer": {
+                            "type": "string",
+                            "enum": ["yes", "no"]
+                          }
+                        }
+                      },
+                      "else": {
+                        "if": {
+                          "properties": {
+                            "category": {
+                              "enum": ["rating"]
+                            }
+                          }
+                        },
+                        "then": {
+                          "properties": {
+                            "answer": {
+                              "type": "number",
+                              "minimum": 1,
+                              "maximum": 5
+                            }
+                          }
+                        },
+                        "else": {
+                          "if": {
+                            "properties": {
+                              "category": {
+                                "enum": ["text"]
+                              }
+                            }
+                          },
+                          "then": {
+                            "properties": {
+                              "answer": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "else": {
+                            "properties": {
+                              "answer": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/survey",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Survey"],
+        "description": "API to get survey questions",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "question_data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "question_id": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/survey",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Survey"],
+        "description": "API to skip survey",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "204"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/survey",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "patch",
+          "type": "http",
+          "integrationHttpMethod": "patch",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/user": {
+      "get": {
+        "tags": ["User"],
+        "description": "API to fetch user details",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": {
+                      "type": "number"
+                    },
+                    "user_name": {
+                      "type": "string"
+                    },
+                    "dob": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "user_email": {
+                      "type": "string"
+                    },
+                    "user_mobile": {
+                      "type": "string"
+                    },
+                    "user_address": {
+                      "type": "string"
+                    },
+                    "add_time": {
+                      "type": "string"
+                    },
+                    "add_by": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/user",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http"
+        }
+      }
+    },
+    "/healthCheck": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/healthCheck",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http"
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/airport": {
+      "post": {
+        "tags": ["Service"],
+        "description": "API to create airport pickup request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "request_time": {
+                    "type": "string",
+                    "format": "time"
+                  },
+                  "flight_number": {
+                    "type": "string"
+                  },
+                  "number_of_pax": {
+                    "type": "number",
+                    "minimum": 1
+                  },
+                  "number_of_luggage": {
+                    "type": "number"
+                  }
+                },
+                "required": ["request_date", "request_time", "flight_number", "number_of_pax", "number_of_luggage"]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/airport",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Service"],
+        "description": "API to fetch airport pickup requests history",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "request_date": {
+                        "type": "string"
+                      },
+                      "request_time": {
+                        "type": "string"
+                      },
+                      "flight_number": {
+                        "type": "string"
+                      },
+                      "number_of_pax": {
+                        "type": "string"
+                      },
+                      "number_of_luggage": {
+                        "type": "string"
+                      },
+                      "request_status": {
+                        "type": "string"
+                      },
+                      "add_time": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/airport",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/airport/{request_id}": {
+      "delete": {
+        "tags": ["Service"],
+        "description": "API to cancel airport pickup request",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "request_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "204"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/airport/{request_id}",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "delete",
+          "type": "http",
+          "integrationHttpMethod": "delete",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.path.request_id": "method.request.path.request_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/catamaran": {
+      "get": {
+        "tags": ["Service"],
+        "description": "API to fetch all catamaran request",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "book_in_date": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "cost": {
+                        "type": "number"
+                      },
+                      "from_time": {
+                        "type": "string",
+                        "format": "time"
+                      },
+                      "to_time": {
+                        "type": "string",
+                        "format": "time"
+                      },
+                      "comments": {
+                        "type": "string"
+                      },
+                      "admin_comments": {
+                        "type": ["null", "string"]
+                      },
+                      "request_status": {
+                        "type": "string"
+                      },
+                      "payment_status": {
+                        "type": "string"
+                      },
+                      "add_time": {
+                        "type": "string",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/catamaran",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Service"],
+        "description": "API to create catamaran request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "book_in_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "slot_id": {
+                    "type": "number"
+                  },
+                  "number_of_pax": {
+                    "type": "number",
+                    "minimum": 1
+                  }
+                },
+                "required": ["book_in_date", "slot_id", "number_of_pax"]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/catamaran",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/catamaran/{request_id}": {
+      "delete": {
+        "tags": ["Service"],
+        "description": "API to delete catamaran request for given request ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "request_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "204"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/catamaran/{request_id}",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "delete",
+          "type": "http",
+          "integrationHttpMethod": "delete",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.path.request_id": "method.request.path.request_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/laundry": {
+      "post": {
+        "tags": ["Service"],
+        "description": "API to create laundry pickup request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "request_time": {
+                    "type": "string",
+                    "format": "time"
+                  },
+                  "comments": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "201"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/laundry",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "post",
+          "type": "http",
+          "integrationHttpMethod": "post",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Service"],
+        "description": "API to fetch laundry requests history",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "request_date": {
+                        "type": "string"
+                      },
+                      "request_time": {
+                        "type": "string"
+                      },
+                      "comments": {
+                        "type": "string"
+                      },
+                      "request_status": {
+                        "type": "string"
+                      },
+                      "add_time": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/laundry",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "get",
+          "type": "http",
+          "integrationHttpMethod": "get",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/units/{unit_id}/laundry/{request_id}": {
+      "delete": {
+        "tags": ["Service"],
+        "description": "API to delete laundry request",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "project_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "unit_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "path",
+            "name": "request_id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "204"
+            }
+          },
+          "uri": "http://vianaar-backend.eba-hxvhbm2d.ap-south-1.elasticbeanstalk.com/api/v1/projects/{project_id}/units/{unit_id}/laundry/{request_id}",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "delete",
+          "type": "http",
+          "integrationHttpMethod": "delete",
+          "requestParameters": {
+            "integration.request.path.project_id": "method.request.path.project_id",
+            "integration.request.path.unit_id": "method.request.path.unit_id",
+            "integration.request.path.request_id": "method.request.path.request_id",
+            "integration.request.header.Content-Type": "'application/json'"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

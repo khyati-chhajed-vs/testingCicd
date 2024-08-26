@@ -1,0 +1,14 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Vianaar Prod",
+    "description": "Vianaar APIs",
+    "version": "1.0.0",
+    "contact": {
+      "name": "",
+      "url": "Vianaar",
+      "email": "akshika.choudhary@vectoscalar.com"
+    }
+  },
+  "definitions": {}
+}

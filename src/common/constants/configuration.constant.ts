@@ -1,0 +1,11 @@
+export const CONFIGURATION_ENDPOINT = '/configs';
+export const CATAMARAN_CONFIG_ENDPOINT = '/catamaran_configs';
+
+export const CONFIG_ERROR = {
+  WELCOME_VIDEOS_NOT_FOUND: {
+    CODE: 'WELCOME_VIDEOS_NOT_FOUND',
+  },
+  CONFIGURATION_NOT_FOUND: {
+    CODE: 'CONFIGURATION_NOT_FOUND',
+  },
+};

@@ -1,0 +1,9 @@
+export const BOOK_A_STAY_ENDPOINT = '/book_a_stay';
+export const BOOK_A_STAY_ERROR = {
+  DUPLICATE_REQUEST: {
+    CODE: 'DUPLICATE_REQUEST',
+  },
+  INVALID_CHECK_IN_CHECK_OUT_DATES: {
+    CODE: 'INVALID_CHECK_IN_CHECK_OUT_DATES',
+  },
+};
