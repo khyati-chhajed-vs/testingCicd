@@ -65,8 +65,7 @@ export class AirportPickupService extends BaseService {
   }
 
   /**
-   * Method to check whether the airport pickup request for given
-   * project ID and unit ID already exist
+   * Method to check whether the airport pickup request for given project ID and unit ID already exist
    * @param request
    */
   private async validateRequest(request: FastifyRequest<CreateAirportPickupRequest>) {
