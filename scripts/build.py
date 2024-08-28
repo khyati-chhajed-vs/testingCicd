@@ -25,7 +25,7 @@ print("Generating Build...")
 os.system("npm run build")
 
 print(f"Copying 'eb/package.json' Files Into '{dist_dir}' Directory.")
-shutil.copy("../eb/package.json", dist_dir)
+shutil.copy("./eb/package.json", dist_dir)
 
 print(f"Copying 'eb/package-lock.json' Files Into '{dist_dir}' Directory.")
 shutil.copy("../eb/package-lock.json", dist_dir)
